@@ -15,18 +15,21 @@ Banners {
         bool is_enabled
         int feature_id
         string created_at
+        string updated_at
     }
 
     Tags {
         int id
         string title
         string created_at
+        string updated_at
     }
 
     Features {
         int id
         string title
         string created_at
+        string updated_at
     }
 
     BannerTags {
