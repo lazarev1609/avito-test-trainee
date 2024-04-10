@@ -29,6 +29,16 @@ CREATE TABLE BannerTags (
                         banner_id INT NOT NULL,
                         tag_id INT NOT NULL
 );
+
+CREATE TABLE Users (
+                        id SERIAL PRIMARY KEY,
+                        email VARCHAR(255),
+                        name VARCHAR(255),
+                        hashed_password VARCHAR(255) NOT NULL,
+                        created_at TIMESTAMP,
+                        updated_at TIMESTAMP
+
+);
 --
 ALTER TABLE Banners ADD CONSTRAINT "fk_feature" FOREIGN KEY("feature_id") REFERENCES Features("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE BannerTags ADD CONSTRAINT "fk_banner" FOREIGN KEY("banner_id") REFERENCES Banners("id") ON DELETE CASCADE ON UPDATE NO ACTION;
@@ -39,11 +49,11 @@ ALTER TABLE BannerTags ADD CONSTRAINT "fk_tag" FOREIGN KEY("tag_id") REFERENCES 
 -- +goose Down
 -- +goose StatementBegin
 SELECT 'down SQL query';
-ALTER TABLE "Banners" DROP CONSTRAINT "fk_feature";
-ALTER TABLE "BannerTags" DROP CONSTRAINT "fk_banner";
-ALTER TABLE "BannerTags" DROP CONSTRAINT "fk_tag";
-DROP TABLE "BannerTags";
-DROP TABLE "Features";
-DROP TABLE "Tags";
-DROP TABLE "Banners";
+ALTER TABLE Banners DROP CONSTRAINT "fk_feature";
+ALTER TABLE BannerTags DROP CONSTRAINT "fk_banner";
+ALTER TABLE BannerTags DROP CONSTRAINT "fk_tag";
+DROP TABLE BannerTags;
+DROP TABLE Features;
+DROP TABLE Tags;
+DROP TABLE Banners;
 -- +goose StatementEnd
